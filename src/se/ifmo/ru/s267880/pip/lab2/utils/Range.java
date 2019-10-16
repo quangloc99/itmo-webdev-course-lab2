@@ -51,4 +51,12 @@ public class Range implements Iterable<Double> {
             }
         };
     }
+
+    public String toJSON() {
+        return String.format("{"+
+                "\"low\": %f, " +
+                "\"high\": %f, " +
+                "\"step\": %f" +
+                "}", low, high, step);
+    }
 }
