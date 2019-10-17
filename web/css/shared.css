@@ -16,19 +16,3 @@ body {
   margin: var(--size-between-element);
   padding:0.1px;
 }
-
-input[type=submit],
-button,
-input[type=text] {
-  padding: var(--widget-padding);
-  background-color: var(--widget-color);
-  border: 0;
-  box-shadow: var(--inactive-shadow);
-  box-sizing: border-box;
-}
-
-input[type=submit]:hover,
-button:hover,
-input[type=text]:focus {
-   box-shadow: var(--active-shadow);
-}

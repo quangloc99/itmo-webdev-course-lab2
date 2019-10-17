@@ -6,6 +6,7 @@
     <title>Input form - Lab 2 - Tran Quang Loc</title>
     <link href="css/theme.css" rel="stylesheet" type="text/css">
     <link href="css/shared.css" rel="stylesheet" type="text/css">
+    <link href="css/form-widget.css" rel="stylesheet" type="text/css">
     <link href="css/input-form.css" rel="stylesheet" type="text/css">
 </head>
 <body>
