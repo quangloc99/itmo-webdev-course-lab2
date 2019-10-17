@@ -18,11 +18,11 @@ public class AreaCheckServlet extends HttpServlet {
         try {
             query = (Query) req.getAttribute("transformed-query");
             Objects.requireNonNull(query, "Query not found or not being validated via /submit page. ");
+            query.getResult();  // this seem useless, because the checking code is inside Query class.
+            // but lab is lab, needed to be done :))
+            req.getRequestDispatcher("./response").forward(req, resp);
         } catch (ClassCastException | NullPointerException e) {
             errorSender.send(e.getMessage());
         }
-        query.getResult();  // this seem useless, because the checking code is inside Query class.
-                            // but lab is lab :))
-        resp.getWriter().printf("%f %f %f %s", query.getX(), query.getY(), query.getR(), query.getResult());
     }
 }

@@ -4,8 +4,6 @@ import se.ifmo.ru.s267880.pip.lab2.DataRanges;
 import se.ifmo.ru.s267880.pip.lab2.Query;
 import se.ifmo.ru.s267880.pip.lab2.utils.ErrorSender;
 
-import static se.ifmo.ru.s267880.pip.lab2.utils.StringUtils.encodeURL;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +25,6 @@ public class ControllerServlet extends HttpServlet {
                 try {
                     med.setAccessible(true);
                     med.invoke(this, req, resp);
-                    return ;
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     if (e instanceof InvocationTargetException) {
                         if (e.getCause() instanceof ServletException) {
@@ -41,6 +38,7 @@ public class ControllerServlet extends HttpServlet {
                     sender.send("Weird things happens on the server because the developer used black magic. " +
                             "Please contact the developer.");
                 }
+                return ;
             }
         }
         sender.send("Unsupported service");
