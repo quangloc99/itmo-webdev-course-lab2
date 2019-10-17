@@ -19,11 +19,19 @@ public class RequestWrapper {
         return field;
     }
 
-    public Double getDoubleParameter(String name, boolean required) {
+    public Double getDoubleParameter(String name, boolean required, boolean normalizeSeparator) {
+        String field = getParameter(name, required);
+        if (normalizeSeparator) {
+            field = StringUtils.normalizeNumberSeparator(field);
+        }
         try {
-            return Double.parseDouble(getParameter(name, required));
+            return Double.parseDouble(field);
         } catch (NumberFormatException e) {
             throw new NumberFormatException(String.format("Field %s must be a number", name));
         }
+    }
+
+    public Double getDoubleParameter(String name, boolean required) {
+        return getDoubleParameter(name, required, true);
     }
 }
