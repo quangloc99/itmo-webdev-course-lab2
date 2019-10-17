@@ -12,6 +12,11 @@
         <servlet-name>controller</servlet-name>
         <servlet-class>se.ifmo.ru.s267880.pip.lab2.servlets.ControllerServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>area-check</servlet-name>
+        <servlet-class>se.ifmo.ru.s267880.pip.lab2.servlets.AreaCheckServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>client-side-input</servlet-name>
@@ -26,6 +31,11 @@
     <servlet-mapping>
         <servlet-name>client-side-input</servlet-name>
         <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>area-check</servlet-name>
+        <url-pattern>/area-check</url-pattern>
     </servlet-mapping>
     
 </web-app>

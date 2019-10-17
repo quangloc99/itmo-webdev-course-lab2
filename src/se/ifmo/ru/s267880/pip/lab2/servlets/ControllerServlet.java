@@ -69,10 +69,10 @@ public class ControllerServlet extends HttpServlet {
                 ), true);
             }
             req.setAttribute("transformed-query", query);
+
         } catch (Exception e) {
             errorSender.send(e.getMessage(), true);
         }
-        resp.getWriter().write("nice\n");
-        resp.getWriter().write(req.getRequestURI());
+        req.getRequestDispatcher("./area-check").forward(req, resp);
     }
 }
