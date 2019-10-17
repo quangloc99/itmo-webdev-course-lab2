@@ -17,7 +17,7 @@ Well, technically, LinkedList is a Bean Class:
 <%
     try {
         Query query = (Query) request.getAttribute("transformed-query");
-        queryList.add(query);
+        queryList.addFirst(query);
     } catch (NullPointerException e) {
         // pass, just consider it
     } catch (ClassCastException e) {
@@ -31,11 +31,27 @@ Well, technically, LinkedList is a Bean Class:
     <title>Results - Lab 2 Web - Tran Quang Loc</title>
 </head>
 <body>
-    <% for (Query que : queryList) { %>
-        <%= que.getX() %> <br>
-        <%= que.getY() %> <br>
-        <%= que.getR() %> <br>
-        <%= que.getResult() %> <br>
-    <% } %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (Query que : queryList) { %>
+            <tr class="<%= que.getResult() ? "positive-result" : "negative-result" %>">
+                <td class="column x"><%= que.getX() %></td>
+                <td class="column y"><%= que.getY() %></td>
+                <td class="column r"><%= que.getR() %></td>
+                <td class="column result"><%-- CSS's job--%> <%= que.getResult() %></td>
+            </tr>
+            <% } %>
+        </tbody>
+
+    </table>
 </body>
 </html>
