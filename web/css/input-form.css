@@ -1,0 +1,34 @@
+.error-msg {
+  color: var(--error-color);
+  text-align: right;  
+  width: 100%;
+  height: 1.5em;
+  visibility: hidden;
+}
+
+.error-msg.show {
+  visibility: visible;
+}
+
+.field.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field.values {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.field.values > input[type=text] {
+  width: 100%;
+}
+
+.field.values > input[type=text].invalid {
+  border-bottom: 1px solid var(--error-color);
+}
+
+.field.name {
+  font-weight: bold;
+}

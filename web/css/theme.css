@@ -1,0 +1,17 @@
+:root {
+  --background-color: #f0f0f0;
+  --void-color: #E5E5E5;
+  --error-color: red;
+  
+  --widget-color: white;
+}
+
+:root {
+  --inactive-shadow: 0 2px 2px gray;
+  --active-shadow: 0 2px 2px 1px gray;
+}
+
+:root {
+  --size-between-element: 10px;
+  --widget-padding: 8px 10px;
+}

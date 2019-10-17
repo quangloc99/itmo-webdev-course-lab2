@@ -2,41 +2,43 @@
 <%@ page import="se.ifmo.ru.s267880.pip.lab2.DataRanges" %>
 
 <form name="input-form" action="./submit" method="post">
-    X:
-    <span id="x-error-msg" class="error-msg"></span> <br>
-    <% for (double val: DataRanges.X) { %>
-        <input name="x" type="submit" value="<%=val%>">
-    <% } %>
-    <br>
+    <div class="field container">
+        <div id="x-error-msg" class="error-msg"></div>
+        <div class="field info">
+            <div class="field name"> X: </div>
+            <div class="field values">
+                <% for (double val: DataRanges.X) { %>
+                    <input name="x" type="submit" value="<%=val%>">
+                <% } %>
+            </div>
+        </div>
+    </div>
 
-    Y:
-    <span id="y-error-msg" class="error-msg"></span> <br>
-    <input name="y" type="text">
-    <br>
+    <div class="field container">
+        <div id="y-error-msg" class="error-msg"></div>
+        <div class="field info">
+            <div class="field name">Y:</div>
+            <div class="field values">
+                <input name="y" type="text">
+            </div>
+        </div>
+    </div>
 
-    R: <span id="r-error-msg" class="error-msg"></span> <br>
-    <% for (double val : DataRanges.R) { %>
-        <label>
-            <input name="r" type="radio" value="<%=val%>">
-            <%=val%>
-        </label>
-    <% } %>
+    <div class="field container">
+        <div id="r-error-msg" class="error-msg"></div>
+        <div class="field info">
+            <div class="field name">R:</div>
+            <div class="field values">
+                <% for (double val : DataRanges.R) { %>
+                <label>
+                    <input name="r" type="radio" value="<%=val%>">
+                    <%=val%>
+                </label>
+                <% } %>
+            </div>
+        </div>
+    </div>
 </form>
-
-<style>
-    /** Just for testing. Will be removed later */
-    .error-msg {
-        display: none;
-    }
-
-    .error-msg.show {
-        display: inline;
-    }
-
-    input.invalid {
-        border: 1px solid red;
-    }
-</style>
 
 <script type="module" >
     import dataRanges from "./js/data-ranges.js.jsp";
