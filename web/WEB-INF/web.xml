@@ -9,7 +9,7 @@
     </servlet>
 
     <servlet>
-        <servlet-name>response</servlet-name>
+        <servlet-name>controller</servlet-name>
         <servlet-class>se.ifmo.ru.s267880.pip.lab2.servlets.ControllerServlet</servlet-class>
     </servlet>
     
@@ -19,7 +19,7 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>response</servlet-name>
-        <url-pattern>/response</url-pattern>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/submit</url-pattern>
     </servlet-mapping>
 </web-app>
