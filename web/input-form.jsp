@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="se.ifmo.ru.s267880.pip.lab2.DataRanges" %>
 
-<form name="input-form" action="./response" method="post">
+<form name="input-form" action="./submit" method="post">
     X:
     <span id="x-error-msg" class="error-msg"></span> <br>
     <% for (double val: DataRanges.X) { %>
