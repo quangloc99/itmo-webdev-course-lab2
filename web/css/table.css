@@ -1,5 +1,6 @@
 table {
   border-collapse: collapse;
+  margin: var(--size-between-element);
 }
 
 table > * {
@@ -13,7 +14,7 @@ table thead {
 }
 
 table tr * {
-  width: 100px;
+  width: 150px;
   text-align: center;
 }
 

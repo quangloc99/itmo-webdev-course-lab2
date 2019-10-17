@@ -29,11 +29,16 @@ Well, technically, LinkedList is a Bean Class:
 <html>
 <head>
     <title>Results - Lab 2 Web - Tran Quang Loc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/theme.css" rel="stylesheet" type="text/css">
     <link href="css/shared.css" rel="stylesheet" type="text/css">
     <link href="css/table.css" rel="stylesheet" type="text/css">
+    <link href="css/sidebar.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <header class="sidebar">
+        <%@ include file="caption.html"%>
+    </header>
 
     <table>
         <thead>

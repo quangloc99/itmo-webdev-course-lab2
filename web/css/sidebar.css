@@ -1,0 +1,21 @@
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: var(--sidebar-width);
+  background-color: var(--primary-color);
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+body {
+  padding-left: var(--sidebar-width);
+}
+
+.sidebar > .cap {
+  background-color: var(--dark-primary-color);
+  padding: var(--widget-padding);
+  color: var(--text-on-dark-background);
+  text-align: right;
+}

@@ -5,6 +5,9 @@
   
   --widget-color: white;
   --widget-active-color: #e5e5e5;
+  --primary-color: #b0bec5;
+  --dark-primary-color: #808e95;
+  --text-on-dark-background: white;
 }
 
 :root {
@@ -15,4 +18,5 @@
 :root {
   --size-between-element: 10px;
   --widget-padding: 8px 10px;
+  --sidebar-width: 400px;
 }
