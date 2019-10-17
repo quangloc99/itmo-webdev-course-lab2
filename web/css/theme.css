@@ -4,6 +4,7 @@
   --error-color: red;
   
   --widget-color: white;
+  --widget-active-color: #e5e5e5;
 }
 
 :root {

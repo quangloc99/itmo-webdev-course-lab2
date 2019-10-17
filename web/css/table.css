@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+}
+
+table > * {
+  background-color: var(--widget-color);
+  box-shadow: var(--inactive-shadow);
+}
+
+table thead {
+  border-bottom: 3px solid black;
+  margin-bottom: 10px;
+}
+
+table tr * {
+  width: 100px;
+  text-align: center;
+}
+
+table tbody tr:hover {
+  box-shadow: var(--active-shadow);
+  background-color: var(--widget-active-color);
+}
