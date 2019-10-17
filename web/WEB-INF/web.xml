@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>request</servlet-name>
+        <servlet-name>client-side-input</servlet-name>
         <jsp-file>request.jsp</jsp-file>
     </servlet>
 
@@ -14,7 +14,7 @@
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>request</servlet-name>
+        <servlet-name>client-side-input</servlet-name>
         <url-pattern>/request</url-pattern>
     </servlet-mapping>
     
@@ -22,4 +22,10 @@
         <servlet-name>controller</servlet-name>
         <url-pattern>/submit</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>client-side-input</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

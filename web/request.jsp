@@ -6,8 +6,8 @@
     <title>Input form - Lab 2 - Tran Quang Loc</title>
 </head>
 <body>
-    <% if (request.getAttribute("error-message") != null) { %>
-        Error: ${requestScope["error-message"]}
+    <% if (request.getRequestURI().endsWith("error")) { %>
+        Error: ${param["error-msg"]}
     <% } %>
     <div id="input-form-container" class="container">
         <%@include file="input-form.jsp"%>
