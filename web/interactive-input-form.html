@@ -1,0 +1,69 @@
+<div style="display: flex; justify-content: space-between;">
+    <div id="interactive-area">
+        <%@ include file="area-template.html"%>
+    </div>
+    <div id="interactive-data" style="width: 200px;">
+        X: <div id="interactive-x"></div><br>
+        Y: <div id="interactive-y"></div>
+    </div>
+</div>
+
+<script type="module" defer>
+    import dataRanges from "./js/data-ranges.js.jsp";
+    import {rValidator} from "./js/form-validation.js";
+    import {HiddenForm} from "./js/HiddenForm.js";
+
+    const area = document.querySelector('#interactive-area > svg');
+    const AREA_SIZE = area.viewBox.baseVal.width / 2;
+
+    area.style.setProperty('--optional-radius', "0px");
+    area.style.setProperty('--optional-color', "blue");
+    area.style.setProperty('cursor', 'crosshair');
+
+    const inputRadius = Array.from(document.querySelectorAll('[name="input-form"] input[name="r"]'));
+    const changeRadius = (radius) => {
+        let newRadius = radius / dataRanges.R.high * AREA_SIZE;
+        area.style.setProperty('--optional-radius', `\${newRadius}px`);
+    };
+    inputRadius.forEach(elm => elm.addEventListener('click', evt => changeRadius(+evt.target.value)));
+    inputRadius.forEach(elm => {
+        if (elm.checked) changeRadius(+elm.value);
+    });
+
+    const displayX = document.querySelector('#interactive-x');
+    const displayY = document.querySelector('#interactive-y');
+
+    const mouseEventToInputCoordinates = (event) => {
+        const boundingBox = area.getBoundingClientRect();
+        const relativeX = event.clientX - boundingBox.left;
+        const relativeY = event.clientY - boundingBox.top;
+        return {
+            x: relativeX / AREA_SIZE * dataRanges.R.high  - dataRanges.R.high,
+            y: -(relativeY / AREA_SIZE * dataRanges.R.high - dataRanges.R.high)
+        }
+    };
+
+    area.addEventListener('mousemove', event => {
+        const {x, y} = mouseEventToInputCoordinates(event);
+        displayX.innerHTML = x.toFixed(3);
+        displayY.innerHTML = y.toFixed(3);
+    });
+
+    area.addEventListener('mouseout', event => {
+        displayX.innerHTML = "";
+        displayY.innerHTML = "";
+    });
+
+    area.addEventListener('click', event => {
+        if (!rValidator()) {
+            event.preventDefault();
+            return ;
+        }
+
+        const {x, y} = mouseEventToInputCoordinates(event);
+        const r = inputRadius.filter(elm => elm.checked)[0].value;
+        const hiddenForm = new HiddenForm('./submit', 'post');
+        hiddenForm.add({x, y, r});
+        hiddenForm.send();
+    });
+</script>

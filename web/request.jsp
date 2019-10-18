@@ -24,7 +24,13 @@
         Error: ${param["error-msg"]}
     <% } %>
     <div id="input-form-container" class="container">
+        <h2>Input form</h2>
         <%@include file="input-form.jsp"%>
+    </div>
+
+    <div id="interactive-container" class="container">
+        <h2>Interactive input</h2>
+        <%@ include file="interactive-input-form.html"%>
     </div>
 </body>
 </html>

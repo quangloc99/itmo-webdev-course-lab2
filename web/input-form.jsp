@@ -40,43 +40,4 @@
     </div>
 </form>
 
-<script type="module" >
-    import dataRanges from "./js/data-ranges.js.jsp";
-    import {bumberInRangeValidity, requiredRadioValidity} from './js/validation-utils.js';
-    import {createValidator} from './js/validator.js';
-
-    /**
-     * @type {string}
-     */
-    const formSelector = '[name="input-form"]';
-
-    const xValidator = createValidator({
-        targetSelector: `\${formSelector} [name="x"]`,   // \$ for JSP, after compilation it is still $
-        messageSelector: '#x-error-msg',
-        hideMessageOn: ['click', 'input', 'touch'],
-        onValidate: elements => elements.some(elm => elm === document.activeElement) ? '' : 'click here to choose X before submitting',
-    });
-
-    const yValidator = createValidator({
-        targetSelector: `\${formSelector} [name="y"]`,
-        messageSelector: `#y-error-msg`,
-        hideMessageOn: ['input'],
-        onValidate: ([element]) => bumberInRangeValidity(element.value, dataRanges.Y),
-    });
-
-    const rValidator = createValidator({
-        targetSelector: `\${formSelector} [name="r"]`,
-        messageSelector: '#r-error-msg',
-        hideMessageOn: ['input', 'click', 'touch'],
-        onValidate: requiredRadioValidity,
-    });
-
-    const validators = [xValidator, yValidator, rValidator];
-
-    document.querySelector(formSelector).addEventListener('submit', evt => {
-        console.log(evt);
-        if (validators.map(validate => validate(evt)).some(self => !self)) {
-            evt.preventDefault();
-        }
-    });
-</script>
+<script type="module" src="js/form-validation.js"> </script>
