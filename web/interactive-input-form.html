@@ -12,9 +12,14 @@
     import dataRanges from "./js/data-ranges.js.jsp";
     import {rValidator} from "./js/form-validation.js";
     import {HiddenForm} from "./js/HiddenForm.js";
+    import {CoordinatesConverter} from "./js/CoordinatesConverter.js";
 
     const area = document.querySelector('#interactive-area > svg');
-    const AREA_SIZE = area.viewBox.baseVal.width / 2;
+    const coordinatesConverter = new CoordinatesConverter(
+        area.viewBox.baseVal.width / 2,
+        dataRanges.R.high,
+        {x: area.viewBox.baseVal.width / 2, y: area.viewBox.baseVal.width / 2}
+    );
 
     area.style.setProperty('--optional-radius', "0px");
     area.style.setProperty('--optional-color', "blue");
@@ -22,7 +27,7 @@
 
     const inputRadius = Array.from(document.querySelectorAll('[name="input-form"] input[name="r"]'));
     const changeRadius = (radius) => {
-        let newRadius = radius / dataRanges.R.high * AREA_SIZE;
+        const newRadius = coordinatesConverter.displaySizeToAreaSize(radius);
         area.style.setProperty('--optional-radius', `\${newRadius}px`);
     };
     inputRadius.forEach(elm => elm.addEventListener('click', evt => changeRadius(+evt.target.value)));
@@ -37,10 +42,7 @@
         const boundingBox = area.getBoundingClientRect();
         const relativeX = event.clientX - boundingBox.left;
         const relativeY = event.clientY - boundingBox.top;
-        return {
-            x: relativeX / AREA_SIZE * dataRanges.R.high  - dataRanges.R.high,
-            y: -(relativeY / AREA_SIZE * dataRanges.R.high - dataRanges.R.high)
-        }
+        return coordinatesConverter.areaCoordinatesToDisplay({x: relativeX, y: relativeY});
     };
 
     area.addEventListener('mousemove', event => {
