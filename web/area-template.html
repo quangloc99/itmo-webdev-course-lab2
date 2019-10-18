@@ -1,0 +1,38 @@
+<style>
+    :root { --sqrt2: 1.4142135623730950488016887242097; }
+</style>
+
+<svg class="area" viewBox="-100 -100 200 200" width="200" height="200"
+     style="--optional-radius: 60px; --optional-color: yellow;">
+    <clipPath id="clip-lower-left">
+        <rect x="-100" y="0" width="100" height="100"> </rect>
+    </clipPath>
+
+    <clipPath id="clip-upper-right">
+        <rect x="0" y="-100" width="100" height="100"></rect>
+    </clipPath>
+
+    <circle class="lower-left" x="0" y="0"
+            style="r: var(--optional-radius); fill: var(--optional-color);"
+            clip-path="url(#clip-lower-left)"></circle>
+    <rect x="0" y="0" style="
+          width: var(--optional-radius);
+          height:calc(var(--optional-radius) / 2);
+          fill: var(--optional-color);
+    "></rect>
+
+    <g clip-path="url(#clip-upper-right)">
+        <rect style="
+                  x: calc(0px - var(--optional-radius) / var(--sqrt2));
+                  y: calc(0px - var(--optional-radius) / var(--sqrt2));
+                  width: calc(2 * var(--optional-radius) / var(--sqrt2));
+                  height: calc(2 * var(--optional-radius) / var(--sqrt2));
+                  transform: scale(1, 0.5) rotate(45deg);
+                  fill: var(--optional-color);
+              "/>
+    </g>
+
+    <line x1="-100" x2="100" y1="0" y2="0" stroke="black"></line>
+    <line y1="-100" y2="100" x1="0" x2="0" stroke="black"></line>
+
+</svg>
