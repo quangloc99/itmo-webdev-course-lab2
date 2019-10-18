@@ -1,6 +1,7 @@
 package se.ifmo.ru.s267880.pip.lab2;
 
 import se.ifmo.ru.s267880.pip.lab2.utils.RequestWrapper;
+import static se.ifmo.ru.s267880.pip.lab2.utils.MathUtils.eps;
 
 import javax.servlet.ServletRequest;
 
@@ -34,7 +35,6 @@ public class Query {
     }
 
     private boolean isPointInArea() {
-        final double eps = 1e-9;
         if (x < 0 && y > 0) return false;
         if (x < 0 && y < 0) return x * x + y * y < r * r + eps;
         if (x > 0 && y < 0) return x < r + eps && y * 2 > r - eps;

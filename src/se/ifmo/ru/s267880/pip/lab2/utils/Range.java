@@ -3,6 +3,8 @@ package se.ifmo.ru.s267880.pip.lab2.utils;
 import java.lang.Iterable;
 import java.util.Iterator;
 
+import static se.ifmo.ru.s267880.pip.lab2.utils.MathUtils.eps;
+
 public class Range implements Iterable<Double> {
     private double low;
     private double high;
@@ -27,7 +29,7 @@ public class Range implements Iterable<Double> {
     }
 
     public boolean contains(double val) {
-        return low <= val && val < high;
+        return low -eps < val && val < high + eps;
     }
 
 
@@ -40,7 +42,7 @@ public class Range implements Iterable<Double> {
             double cur = low;
             @Override
             public boolean hasNext() {
-                return cur < high;
+                return cur < high + eps;
             }
 
             @Override
