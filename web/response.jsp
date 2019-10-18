@@ -15,9 +15,10 @@ Well, technically, LinkedList is a Bean Class:
 
 <% ErrorSender errorSender = new ErrorSender(request, response); %>
 <%
+    Query newQuery = null;
     try {
-        Query query = (Query) request.getAttribute("transformed-query");
-        queryList.addFirst(query);
+        newQuery = (Query) request.getAttribute("transformed-query");
+        queryList.addFirst(newQuery);
     } catch (NullPointerException e) {
         // pass, just consider it
     } catch (ClassCastException e) {
@@ -38,9 +39,50 @@ Well, technically, LinkedList is a Bean Class:
 <body>
     <header class="sidebar">
         <%@ include file="caption.html"%>
+        <div style="text-align:center">
+            Result<br>
+            <div id="query-displayer">
+                <style>
+                    #query-displayer-areas,
+                    #query-displayer-points {
+                        position: relative;
+                        top: 0;
+                        left: 100px;
+                    }
+                    #query-displayer-areas svg,
+                    #query-displayer-points .point {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+
+                    #query-displayer-points .points {
+                        transform: translate(-50%, -50%);
+                    }
+
+                    #query-displayer-points .points.positive {
+                        content: '✔';
+                    }
+
+                    #query-displayer-points .points.negative {
+                        content: '✕';
+                    }
+
+                    #query-displayer-areas svg .shapes {
+                        filter: drop-shadow(var(--inactive-shadow));
+                    }
+                </style>
+                <div id="query-displayer-areas">
+                    <%@ include file="area-template.html" %>
+                </div>
+                <div id="query-displayer-points">
+                    <div class="point"></div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <table>
+    <table class="query-table">
         <thead>
             <tr>
                 <th>X</th>
@@ -61,5 +103,51 @@ Well, technically, LinkedList is a Bean Class:
         </tbody>
 
     </table>
+
+    <script type="module">
+        import {CoordinatesConverter} from "./js/CoordinatesConverter.js";
+        import dataRanges from './js/data-ranges.js.jsp';
+        const svg = document.querySelector('#query-displayer-areas svg');
+        const queriesTableRow = Array.from(document.querySelector(".query-table tbody").children);
+        const queryPoint = document.querySelector('#query-displayer-points .point');
+
+        let coordinatesConverter = null;
+
+        coordinatesConverter = new CoordinatesConverter(
+            svg.viewBox.baseVal.width / 2,
+            dataRanges.R.high,
+            {x: svg.viewBox.baseVal.width / 2, y: svg.viewBox.baseVal.height / 2}
+        );
+
+        const parseTableRowToQuery = (tableRow) => {
+            const children = tableRow.children;
+            return {
+                x: children[0].innerHTML,
+                y: children[1].innerHTML,
+                r: children[2].innerHTML,
+                result: children[3].innerHTML.includes('true')
+            }
+        };
+
+        const setCurrentQueryToDisplayer = ({x, y, r, result}) => {
+            const newR = coordinatesConverter.displaySizeToAreaSize(r);
+            svg.style.setProperty('--optional-radius', `\${newR}px`);
+            svg.style.setProperty('--optional-color', result ? 'green' : 'red');
+            queryPoint.innerHTML = result ? '✔' : '✕';
+            const {x: newX, y: newY} = coordinatesConverter.displayCoordinatesToArea({x, y: -y});
+            queryPoint.style.top = `\${newY}px`;
+            queryPoint.style.left= `\${newX}px`;
+        };
+
+
+        queriesTableRow.forEach(row => {
+            row.addEventListener('mouseenter', event => setCurrentQueryToDisplayer(parseTableRowToQuery(row)));
+            row.addEventListener('mouseout', event => setCurrentQueryToDisplayer(parseTableRowToQuery(queriesTableRow[0])));
+        });
+
+        setCurrentQueryToDisplayer(parseTableRowToQuery(queriesTableRow[0]));
+
+
+    </script>
 </body>
 </html>

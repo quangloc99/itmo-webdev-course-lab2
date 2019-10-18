@@ -20,4 +20,11 @@ export class CoordinatesConverter {
             y: this.areaSizeToDisplaySize(y - this.areaOrigin.y) + this.displayOrigin.y
         }
     }
+
+    displayCoordinatesToArea({x, y}) {
+        return {
+            x: this.displaySizeToAreaSize(x - this.displayOrigin.x) + this.areaOrigin.x,
+            y: this.displaySizeToAreaSize(y - this.displayOrigin.y) + this.areaOrigin.y
+        }
+    }
 }

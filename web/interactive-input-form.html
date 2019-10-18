@@ -42,7 +42,8 @@
         const boundingBox = area.getBoundingClientRect();
         const relativeX = event.clientX - boundingBox.left;
         const relativeY = event.clientY - boundingBox.top;
-        return coordinatesConverter.areaCoordinatesToDisplay({x: relativeX, y: relativeY});
+        let {x, y} = coordinatesConverter.areaCoordinatesToDisplay({x: relativeX, y: relativeY});
+        return {x, y: -y};
     };
 
     area.addEventListener('mousemove', event => {
