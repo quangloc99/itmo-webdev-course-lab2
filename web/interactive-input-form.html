@@ -17,7 +17,7 @@
     const area = document.querySelector('#interactive-area > svg');
     const coordinatesConverter = new CoordinatesConverter(
         area.viewBox.baseVal.width / 2,
-        dataRanges.R.high,
+        Math.max(dataRanges.X.high, dataRanges.Y.high, dataRanges.R.high),
         {x: area.viewBox.baseVal.width / 2, y: area.viewBox.baseVal.width / 2}
     );
 

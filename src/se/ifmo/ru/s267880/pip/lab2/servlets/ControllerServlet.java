@@ -73,4 +73,8 @@ public class ControllerServlet extends HttpServlet {
         }
         req.getRequestDispatcher("./area-check").forward(req, resp);
     }
+
+    private void viewtable(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.sendRedirect("./response");
+    }
 }

@@ -20,9 +20,12 @@
             <img src="res/areas.png" width="350">
         </div>
     </header>
-    <% if (request.getRequestURI().endsWith("error")) { %>
+    <div class="error-msg show">
+        <% if (request.getRequestURI().endsWith("error")) { %>
         Error: ${param["error-msg"]}
-    <% } %>
+        <% } %>
+    </div>
+
     <div id="input-form-container" class="container">
         <h2>Input form</h2>
         <%@include file="input-form.jsp"%>
@@ -32,5 +35,7 @@
         <h2>Interactive input</h2>
         <%@ include file="interactive-input-form.html"%>
     </div>
+
+    <button onclick="window.location = './viewtable'">View old results</button>
 </body>
 </html>

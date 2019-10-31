@@ -18,7 +18,7 @@ Well, technically, LinkedList is a Bean Class:
     Query newQuery = null;
     try {
         newQuery = (Query) request.getAttribute("transformed-query");
-        queryList.addFirst(newQuery);
+        if (newQuery != null) queryList.addFirst(newQuery);
     } catch (NullPointerException e) {
         // pass, just consider it
     } catch (ClassCastException e) {
@@ -35,6 +35,7 @@ Well, technically, LinkedList is a Bean Class:
     <link href="css/shared.css" rel="stylesheet" type="text/css">
     <link href="css/table.css" rel="stylesheet" type="text/css">
     <link href="css/sidebar.css" rel="stylesheet" type="text/css">
+    <link href="css/form-widget.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <header class="sidebar">
@@ -56,18 +57,9 @@ Well, technically, LinkedList is a Bean Class:
                         left: 0;
                     }
 
-                    #query-displayer-points .points {
+                    #query-displayer-points .point {
                         transform: translate(-50%, -50%);
                     }
-
-                    #query-displayer-points .points.positive {
-                        content: '✔';
-                    }
-
-                    #query-displayer-points .points.negative {
-                        content: '✕';
-                    }
-
                     #query-displayer-areas svg .shapes {
                         filter: drop-shadow(var(--inactive-shadow));
                     }
@@ -82,6 +74,8 @@ Well, technically, LinkedList is a Bean Class:
         </div>
     </header>
 
+    <button onclick="window.location='./request'">Add new query</button>
+    <h2>Hover on the row to show the query on the left.</h2>
     <table class="query-table">
         <thead>
             <tr>
@@ -115,7 +109,7 @@ Well, technically, LinkedList is a Bean Class:
 
         coordinatesConverter = new CoordinatesConverter(
             svg.viewBox.baseVal.width / 2,
-            dataRanges.R.high,
+            Math.max(dataRanges.X.high, dataRanges.Y.high, dataRanges.R.high),
             {x: svg.viewBox.baseVal.width / 2, y: svg.viewBox.baseVal.height / 2}
         );
 
@@ -145,7 +139,9 @@ Well, technically, LinkedList is a Bean Class:
             row.addEventListener('mouseout', event => setCurrentQueryToDisplayer(parseTableRowToQuery(queriesTableRow[0])));
         });
 
-        setCurrentQueryToDisplayer(parseTableRowToQuery(queriesTableRow[0]));
+        if (queriesTableRow.length !== 0) {
+            setCurrentQueryToDisplayer(parseTableRowToQuery(queriesTableRow[0]));
+        }
 
 
     </script>
