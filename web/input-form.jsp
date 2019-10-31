@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="se.ifmo.ru.s267880.pip.lab2.DataRanges" %>
 
-<form name="input-form" action="./submit" method="post">
+<form name="input-form" action="./submit.do" method="post">
     <div class="field container">
         <div id="x-error-msg" class="error-msg"></div>
         <div class="field info">

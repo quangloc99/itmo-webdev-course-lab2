@@ -65,7 +65,7 @@
 
         const {x, y} = mouseEventToInputCoordinates(event);
         const r = inputRadius.filter(elm => elm.checked)[0].value;
-        const hiddenForm = new HiddenForm('./submit', 'post');
+        const hiddenForm = new HiddenForm('./submit.do', 'post');
         hiddenForm.add({x, y, r});
         hiddenForm.send();
     });

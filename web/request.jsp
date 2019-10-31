@@ -36,6 +36,6 @@
         <%@ include file="interactive-input-form.html"%>
     </div>
 
-    <button onclick="window.location = './viewtable'">View old results</button>
+    <button onclick="window.location = './viewtable.do'">View old results</button>
 </body>
 </html>

@@ -30,12 +30,7 @@
     
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
-        <url-pattern>/submit</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
-        <servlet-name>client-side-input</servlet-name>
-        <url-pattern>/error</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -44,13 +39,12 @@
     </servlet-mapping>
     
     <servlet-mapping>
-        <servlet-name>controller</servlet-name>
-        <url-pattern>/viewtable</url-pattern>
-    </servlet-mapping>
-    
-    <servlet-mapping>
         <servlet-name>response</servlet-name>
         <url-pattern>/response</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet-mapping>
+        <servlet-name>client-side-input</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
 </web-app>
