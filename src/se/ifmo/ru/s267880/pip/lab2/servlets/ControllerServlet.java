@@ -55,7 +55,7 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorSender errorSender = new ErrorSender(req, resp, "/error", "error-msg");
+        ErrorSender errorSender = new ErrorSender(req, resp);
         String[] uriParts = req.getRequestURI().split("/");
         String serviceName = uriParts[uriParts.length - 1];
 
