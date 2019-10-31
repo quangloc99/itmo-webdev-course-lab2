@@ -37,7 +37,7 @@ public class Query {
     private boolean isPointInArea() {
         if (x < 0 && y > 0) return false;
         if (x < 0 && y < 0) return x * x + y * y < r * r + eps;
-        if (x > 0 && y < 0) return x < r + eps && y * 2 > r - eps;
+        if (x > 0 && y < 0) return x < r + eps && y * 2 > -r - eps;
         if (x > 0 && y > 0) return x + 2 * y < r + eps;
         throw new RuntimeException("wtf???");
     }
