@@ -58,6 +58,11 @@ Well, technically, LinkedList is a Bean Class:
                     }
 
                     #query-displayer-points .point {
+                        text-shadow: 2px 3px 10px rgba(255, 255, 255, 1);
+                        color: yellow;
+                    }
+
+                    #query-displayer-points .point {
                         transform: translate(-50%, -50%);
                     }
                     #query-displayer-areas svg .shapes {
