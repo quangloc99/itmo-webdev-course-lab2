@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="se.ifmo.ru.s267880.pip.lab2.Query" %>
 <%@ page import="se.ifmo.ru.s267880.pip.lab2.utils.ErrorSender" %>
+<%@ page import="java.util.Locale" %>
 
 <%--
 Well, technically, LinkedList is a Bean Class:
@@ -93,9 +94,9 @@ Well, technically, LinkedList is a Bean Class:
         <tbody>
             <% for (Query que : queryList) { %>
             <tr class="<%= que.getResult() ? "positive-result" : "negative-result" %>">
-                <td class="column x"><%= String.format("%.3f", que.getX()) %></td>
-                <td class="column y"><%= String.format("%.3f", que.getY()) %></td>
-                <td class="column r"><%= String.format("%.3f", que.getR()) %></td>
+                <td class="column x"><%= String.format(Locale.US, "%.3f", que.getX()) %></td>
+                <td class="column y"><%= String.format(Locale.US, "%.3f", que.getY()) %></td>
+                <td class="column r"><%= String.format(Locale.US, "%.3f", que.getR()) %></td>
                 <td class="column result"><%-- CSS's job--%> <%= que.getResult() %></td>
             </tr>
             <% } %>

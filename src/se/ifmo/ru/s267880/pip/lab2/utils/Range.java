@@ -2,6 +2,7 @@ package se.ifmo.ru.s267880.pip.lab2.utils;
 
 import java.lang.Iterable;
 import java.util.Iterator;
+import java.util.Locale;
 
 import static se.ifmo.ru.s267880.pip.lab2.utils.MathUtils.eps;
 
@@ -55,7 +56,7 @@ public class Range implements Iterable<Double> {
     }
 
     public String toJSON() {
-        return String.format("{"+
+        return String.format(Locale.US, "{"+
                 "\"low\": %f, " +
                 "\"high\": %f, " +
                 "\"step\": %f" +
